@@ -1,11 +1,8 @@
+from flask import render_template
 from app import app
 
-@app.route("/index")
-@app.route("/")
-def index():
-    return "Hello World!"
-
-
-@app.route("/test/")
-def test():
-    return "Oi!"
+@app.route("/index/<user>")
+@app.route("/", defaults={"user":None})
+def index(user):
+    return render_template('index.html', 
+                            user=user)
